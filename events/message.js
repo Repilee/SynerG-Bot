@@ -15,8 +15,17 @@ module.exports = (message) => {
   if (cmd) {
 		if (message.channel.type === 'dm') {
 		} else {
-				if (perms < cmd.conf.permLevel) return
-			cmd.run(client, message, params, perms);
+				if (perms >= cmd.conf.permLevel) {
+        cmd.run(client, message, params, perms);
+       } else {
+         const embed = new Discord.RichEmbed()
+       		.setColor(0xDF3046)
+       		.setTimestamp()
+       		.setAuthor('Command Error!', `${settings.image_link_negative}`)
+       		.setDescription(`You do not have permission to run this command. For a list of commands, run ${settings.prefix}help.`)
+       		 .setFooter('SynerG Moderation Bot');
+       		 message.channel.send({embed}).then(
+       	 response => response.delete(3500).catch(error => console.log(error.stack)))
 }
 }
 if (!cmd) {
@@ -28,5 +37,6 @@ if (!cmd) {
 		 .setFooter('SynerG Moderation Bot');
 		 message.channel.send({embed}).then(
 	 response => response.delete(3500).catch(error => console.log(error.stack)))
+}
 }
 };
