@@ -2,17 +2,17 @@ const Discord = require('discord.js');
 const settings = require('../settings.json');
 exports.run = function(client, message, args) {
   let modlog = client.channels.find('name', settings.logchannel);
-  if (!modlog) return message.reply(':x: I cannot find a log channel');
+  if (!modlog) return message.reply(':x: Log channel not found - make sure it is defined.');
    var argresult = args.join(' ');
    if(!argresult) argresult = 'online';
      client.user.setStatus(argresult);
      const embed = new Discord.RichEmbed()
-     .setColor(0x00AE86)
+     .setColor(0x76b352)
      .setTimestamp()
-     .setAuthor('Logs', 'http://i.imgur.com/mlUqB6f.png')
+     .setAuthor('Logs', `${settings.image_link_affirmative}`)
      .setDescription('The bot changed the game to: ' + argresult)
      .addField('Executed by:', `${message.author}`)
-     .setFooter('SynerG moderation bot')
+     .setFooter('SynerG Moderation Bot')
       client.channels.get(modlog.id).send({embed}).catch(console.error);
    console.log(message.author.username + " has changed the status to: " + argresult)
 };

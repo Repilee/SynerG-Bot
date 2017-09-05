@@ -5,14 +5,14 @@ exports.run = function(client, message, args) {
   let modlog = client.channels.find('name', settings.logchannel);
   let violog = client.channels.find('name', 'punishments');
   let muteRole = client.guilds.get(message.guild.id).roles.find('name', 'Violator');
-    if (!muteRole) return message.reply(':x: I cannot find a violator role').catch(console.error);
+    if (!muteRole) return message.reply(':x: Violator role not found.').catch(console.error);
   if (!modlog) return message.reply(":x: There is no log channel available in this server.")
   var seconds = args[1]
     let user = message.guild.member(message.mentions.users.first())
     if (message.mentions.users.size < 1) return message.reply(':x: You must mention someone to violate them.').catch(console.error);
-    if (!seconds) return message.reply(':x: You must tell me when violator role should expire. Must be (days).').catch(console.error);
-    if (remind.length < 1) return message.reply(':x: You must tell me why user should be violated.').catch(console.error);
-  message.channel.send(`Did this user named ${user} broke a/more than a rule? If so, say yes. Otherwise, say no. Remember, command usage is $violate <mention> <days> <string>.\nYou have 30 seconds to answer the question.`);
+    if (!seconds) return message.reply(':x: You must define how long the violator period will be. Must be (days).').catch(console.error);
+    if (remind.length < 1) return message.reply(':x: You must provide a reason for this action.').catch(console.error);
+  message.channel.send(`COMFIRM: Is ${user} the person you intended? Command usage is $violate <mention> <days> <string>.\nYou have 30 seconds to answer. Y/N?`);
   return message.channel.awaitMessages(m => m.author.id === message.author.id, {
     'errors': ['time'],
     'max': 1,
@@ -23,18 +23,18 @@ exports.run = function(client, message, args) {
     let validAnswers = ['yes', 'y', 'no', 'n', 'cancel', 'sure', 'Yes', 'Y', 'nvm'];
     if (validAnswers.includes(resp.content)) {
       if (resp.content === 'cancel' || resp.content === 'no' || resp.content === 'n' || resp.content === 'nvm') {
-        return message.channel.send('Next time, please choose the right user to violate that has broke a rule before.');
+        return message.channel.send('Cancelling.');
       } else {
       if (resp.content === 'yes' || resp.content === 'y' || resp.content === 'Y' || resp.content === 'Yes' || resp.content === 'sure' || resp.content === 'Yes') {
 console.log("Violated " + user.user.username + " for " + seconds + " days.");
-      message.reply(":ok_hand: Violated **" + user.user.username + "**!");
+      message.reply(":white_check_mark:  Violated **" + user.user.username + "**!");
       user.addRole(muteRole)
-             client.channels.get(violog.id).send(`${user}` + " has received a violator for **" + remind + "** and will expire in **" + seconds + "** days.");
+             client.channels.get(violog.id).send(`${user}` + " is now Violator for **" + remind + "** and will expire in **" + seconds + "** days.");
 	  const embed = new Discord.RichEmbed()
-          .setColor(0xf4ce42)
+          .setColor(0xffcd32)
           .setTimestamp()
-          .setFooter('SynerG moderation bot')
-          .setAuthor('You have been violated by a staff!', 'http://i.imgur.com/VsU2c64.png')
+          .setFooter('SynerG Moderation Bot')
+          .setAuthor('You violated the law!', `${settings.image_link_warning}`)
           .addField('Moderator:', `${message.author}`)
           .addField('Reason:', remind)
           .addField('Days', seconds)
@@ -43,13 +43,13 @@ console.log("Violated " + user.user.username + " for " + seconds + " days.");
 
       function continueExecution() {
         console.log("Violator of " + user.user.username + " has expired!");
-        client.channels.get(violog.id).send(`Violator named ${user} has expired after **` + seconds + `** days.`);
-		user.send(":ok_hand: Your role violator has expired! Please abide by the rules next time.").catch(console.error);
+        client.channels.get(violog.id).send(`${user}'s violator status has expired after **` + seconds + `** days.`);
+		user.send(":white_check_mark:  You are no longer a violator. Abide by the rules.").catch(console.error);
         const embed = new Discord.RichEmbed()
-          .setColor(0x00AE86)
+          .setColor(0x76b352)
           .setTimestamp()
-          .setFooter('SynerG moderation bot')
-          .setAuthor('Violator System - Expired', 'http://i.imgur.com/mlUqB6f.png')
+          .setFooter('SynerG Moderation Bot')
+          .setAuthor('Violator System - Expired', `${settings.image_link_affirmative}`)
           .addField('Who:', `${user}`)
           .addField('Moderator:', `${message.author}`)
           .addField('Reason:', remind)
@@ -70,6 +70,6 @@ exports.conf = {
 
 exports.help = {
   name: 'violate',
-  description: 'The bot violates mentioned user in case they broke a rule. [Moderator+ Only]',
+  description: 'The bot adds the Violator role to the specified person for up to 7 days. [Moderator+ Only]',
   usage: 'violate <mention> <days> <string>'
 };

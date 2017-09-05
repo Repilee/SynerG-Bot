@@ -1,12 +1,12 @@
 exports.run = (client, message, args) => {
-  message.channel.sendMessage('Feeling lucky? Let\'s see where the coin lands...')
+  message.channel.send('Feeling lucky? Let\'s see where the coin lands...')
     .then(msg => {
       var answers = [
         '**Heads!**',
         '**Tails!**',
       ];
       var randomAnswerPicker = answers[Math.floor(Math.random() * answers.length)];
-      message.reply("You flipped a coin and it lands on " + randomAnswerPicker).catch(error => console.log(error.stack));
+      message.reply("You flipped a coin... it lands on " + randomAnswerPicker + ".").catch(error => console.log(error.stack));
     });
 };
 

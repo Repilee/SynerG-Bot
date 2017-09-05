@@ -5,11 +5,11 @@ exports.run = (client, message, params) => {
     const commandNames = Array.from(client.commands.keys());
     const longest = commandNames.reduce((long, str) => Math.max(long, str.length), 0);
     const embed = new Discord.RichEmbed()
-    .setColor(0x00AE86)
+    .setColor(0x76b352)
     .setTimestamp()
-    .setAuthor('Bot Commands','http://i.imgur.com/mlUqB6f.png')
+    .setAuthor('Bot Commands',`${settings.image_link_affirmative}`)
     .setDescription('A list of commands has sent to your DM!')
-      .setFooter('SynerG moderation bot');
+      .setFooter('SynerG Moderation Bot');
   message.channel.send({embed})
     message.author.sendCode('asciidoc', `= Command List =\n\n[Use ${settings.prefix}help <command> for information]\n\n${client.commands.map(c => `${settings.prefix}${c.help.name}${' '.repeat(longest - c.help.name.length)} = ${c.help.description}`).join('\n')}`).catch(e => {
         message.reply(`Unable to send you a list of commands. Please check your DM settings.`);
