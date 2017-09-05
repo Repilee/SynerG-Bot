@@ -28,7 +28,7 @@ message.reply(':x: Role not found. Make sure you typed the role correctly. If no
   const embed = new Discord.RichEmbed()
     .setColor(0x76b352)
     .setTimestamp()
-    .setAuthor('Successfully gave role to a user!', ``${settings.image_link_affirmative}``)
+    .setAuthor('Successfully gave role to a user!', `${settings.image_link_affirmative}`)
     .addField('User:', `${member}`)
     .addField('Role:', rolename)
     .addField('Moderator:', `${message.author}`)

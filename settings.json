@@ -7,10 +7,9 @@
 	"prefix": "$",
 	"token": "MzUzNjc4NTc3MTU1MTc4NDk2.DIzMaQ.LtD0X9jMnN6FVwZeYMk5MFEJOps",
 	"logchannel": "bot_logs",
-
 	"image_link_affirmative": 	"https://i.imgur.com/uCmIxRH.png",
 	"image_link_warning": 			"https://i.imgur.com/8cEEBCA.png",
 	"image_link_negative": 			"https://i.imgur.com/YqcxhHh.png",
 	"image_link_ban": 					"https://i.imgur.com/FkkfM5Y.png",
-	"image_link_sG": 						"https://i.imgur.com/EidYdsD.png",
+	"image_link_sG": 						"https://i.imgur.com/EidYdsD.png"
 }

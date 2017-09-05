@@ -11,7 +11,7 @@ if (!modlog) return message.reply(':x: Log channel not found - make sure it is d
      const embed = new Discord.RichEmbed()
      .setColor(0xDF3046)
      .setTimestamp()
-     .setAuthor('Nickname System Error!','$(settings.image_link_negative).png')
+     .setAuthor('Nickname System Error!',`${settings.image_link_negative.png}`)
      .setDescription('The user\'s role is higher than the bot\'s role.')
        .setFooter('SynerG Moderation Bot');
    message.channel.send({embed}).catch(console.error); return
@@ -26,7 +26,7 @@ if (nicknameinput.length < 1) {
   const embed = new Discord.RichEmbed()
     .setColor(0x76b352)
     .setTimestamp()
-    .setAuthor('Successfully reset user\'s nickname!', ``${settings.image_link_affirmative}``)
+    .setAuthor('Successfully reset user\'s nickname!', `${settings.image_link_affirmative}`)
     .addField('User:', `${member.user.username}#${member.user.discriminator}`)
     .addField('Moderator:', `${message.author.username}#${message.author.discriminator}`)
      .setFooter('SynerG Moderation Bot');
@@ -36,7 +36,7 @@ message.channel.send(`:white_check_mark:  Successfully reset ${member.user.usern
   const embed = new Discord.RichEmbed()
     .setColor(0x76b352)
     .setTimestamp()
-    .setAuthor('Successfully nicknamed a user!', ``${settings.image_link_affirmative}``)
+    .setAuthor('Successfully nicknamed a user!', `${settings.image_link_affirmative}`)
     .addField('User:', `${member}`)
     .addField('Nickname:', nicknameinput)
     .addField('Moderator:', `${message.author}`)

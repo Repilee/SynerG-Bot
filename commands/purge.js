@@ -6,7 +6,7 @@ exports.run = function(client, message, args) {
     const embed = new Discord.RichEmbed()
     .setColor(0xDF3046)
     .setTimestamp()
-    .setAuthor('Purge System Error!', '$(settings.image_link_negative).png')
+    .setAuthor('Purge System Error!', `${settings.image_link_negative.png}`)
     .setDescription('Please select a number that is LESS THAN OR EQUAL TO 100 messages.')
     .setFooter('SynerG Moderation Bot');
   message.channel.send({embed}).catch(console.error).then(
@@ -28,7 +28,7 @@ response => response.delete(3500).catch(error => console.log(error.stack)))
   const embed = new Discord.RichEmbed()
   .setColor(0x76b352)
   .setTimestamp()
-  .setAuthor('Purge System', ``${settings.image_link_affirmative}``)
+  .setAuthor('Purge System', `${settings.image_link_affirmative}`)
   .addField('Status:', ':white_check_mark: ' + args.join(' ') + ' *messages was successfully purged!*')
   .addField('Executed by:', `${message.author}`)
    .setFooter('SynerG Moderation Bot');
