@@ -8,7 +8,7 @@ exports.run = function(client, message, args) {
   const embed = new Discord.RichEmbed()
   .setColor(0x76b352)
   .setTimestamp()
-  .setAuthor('Announcements' , '`${settings.image_link_sG}`')
+  .setAuthor('Announcements' , `${settings.image_link_sG}`)
   .setDescription(args.join(' '))
    .setFooter(`Announcement by ${message.author.username}`)
   return client.channels.get(announce.id).send({embed});

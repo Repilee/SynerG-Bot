@@ -1,4 +1,5 @@
 const Discord = require('discord.js');
+const settings = require('../settings.json');
 exports.run = function(client, message, args) {
   let messagecount = parseInt(args.join(' '));
   //if (messagecount.length < 1) return message.reply('Please select something less than 100 messages.').catch(console.error);

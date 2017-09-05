@@ -3,6 +3,7 @@ const settings = require('../settings.json');
 exports.run = function(client, message, args) {
   let remind = args.slice(2).join(' ')
   let modlog = client.channels.find('name', settings.logchannel);
+    let violog = client.channels.find('name', 'punishments');
   let muteRole = client.guilds.get(message.guild.id).roles.find('name', 'Suspicious');
     if (!muteRole) return message.reply(':x: Suspicious role not found.').catch(console.error);
   if (!modlog) return message.reply(":x: There is no log channel available in this server.")
@@ -28,7 +29,7 @@ exports.run = function(client, message, args) {
 console.log("Reminding " + user.username + " in " + seconds + " seconds.");
       message.reply(":white_check_mark:  Reminded " + user.username + "!");
       message.member.addRole(muteRole)
-             client.channels.get(modlog.id).send(`${user}` + " has received a reminder for **" + remind + "** and will expire in **" + seconds + "** days.");
+      client.channels.get(violog.id).send(`${user}` + " has received a reminder for **" + remind + "** and will expire in **" + seconds + "** days.");
 	  const embed = new Discord.RichEmbed()
           .setColor(0xffcd32)
           .setTimestamp()
@@ -41,6 +42,7 @@ console.log("Reminding " + user.username + " in " + seconds + " seconds.");
 
       function continueExecution() {
         console.log("Reminder for " + user.username + " has expired.");
+          client.channels.get(violog.id).send(`${user}'s violator status has expired after **` + seconds + `** days.`);
 		user.send(":white_check_mark:  Your reminder has expired - be mindful of the rules.").catch(console.error);
         const embed = new Discord.RichEmbed()
           .setColor(0x76b352)
