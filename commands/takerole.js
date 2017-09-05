@@ -32,7 +32,7 @@ message.reply(':x: I cannot find a role you requested. Make sure your spelling, 
     const embed = new Discord.RichEmbed()
       .setColor(0xDF3046)
       .setTimestamp()
-      .setAuthor('Role Removal Error!', `${settings.image_link_negative.png}`)
+      .setAuthor('Role Removal Error!', `${settings.image_link_negative}`)
       .addField('User:', `${member}`)
       .addField('Reason:', 'The role you requested to remove is not assigned!')
       .addField('Moderator:', `${message.author}`)

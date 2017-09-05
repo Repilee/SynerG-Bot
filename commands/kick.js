@@ -13,7 +13,7 @@ exports.run = (client, message, args) => {
         const embed = new Discord.RichEmbed()
         .setColor(0xDF3046)
         .setTimestamp()
-        .setAuthor('Kick System Error!',`${settings.image_link_negative.png}`)
+        .setAuthor('Kick System Error!',`${settings.image_link_negative}`)
         .setDescription('The user\'s role is higher than the bot\'s role - unable to kick.')
           .setFooter('SynerG Moderation Bot');
       message.channel.send({embed}).catch(console.error); return
@@ -22,7 +22,7 @@ exports.run = (client, message, args) => {
 const embed = new Discord.RichEmbed()
 .setColor(0xDF3046)
 .setTimestamp()
-.setAuthor('You have been kicked from the server!',`${settings.image_link_negative.png}`)
+.setAuthor('You have been kicked from the server!',`${settings.image_link_negative}`)
 .addField('Reason:', reason)
 .addField('Moderator:', `${message.author}`)
 .setFooter('SynerG Moderation Bot | Obey the rules - else you\'re going to be banned.');

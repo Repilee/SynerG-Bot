@@ -7,7 +7,7 @@ exports.run = function(client, message, args) {
     const embed = new Discord.RichEmbed()
     .setColor(0xDF3046)
     .setTimestamp()
-    .setAuthor('Purge System Error!', `${settings.image_link_negative.png}`)
+    .setAuthor('Purge System Error!', `${settings.image_link_negative}`)
     .setDescription('Please select a number that is LESS THAN OR EQUAL TO 100 messages.')
     .setFooter('SynerG Moderation Bot');
   message.channel.send({embed}).catch(console.error).then(

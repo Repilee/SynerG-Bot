@@ -11,7 +11,7 @@ if (!modlog) return message.reply(':x: Log channel not found - make sure it is d
      const embed = new Discord.RichEmbed()
      .setColor(0xDF3046)
      .setTimestamp()
-     .setAuthor('Nickname System Error!',`${settings.image_link_negative.png}`)
+     .setAuthor('Nickname System Error!',`${settings.image_link_negative}`)
      .setDescription('The user\'s role is higher than the bot\'s role.')
        .setFooter('SynerG Moderation Bot');
    message.channel.send({embed}).catch(console.error); return

@@ -23,7 +23,7 @@ if (!cmd) {
 	const embed = new Discord.RichEmbed()
 		.setColor(0xDF3046)
 		.setTimestamp()
-		.setAuthor('Command Error!', '$(settings.image_link_negative).png')
+		.setAuthor('Command Error!', `${settings.image_link_negative}`)
 		.setDescription('The command you typed is not vaild. For a list of commands, run $help.')
 		 .setFooter('SynerG Moderation Bot');
 		 message.channel.send({embed}).then(

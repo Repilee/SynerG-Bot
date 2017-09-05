@@ -16,7 +16,7 @@ message.reply('Was permit name changed? If so, contact Repilee.').catch(console.
     const embed = new Discord.RichEmbed()
       .setColor(0xDF3046)
       .setTimestamp()
-      .setAuthor('Permit Error!', `${settings.image_link_negative.png}`)
+      .setAuthor('Permit Error!', `${settings.image_link_negative}`)
       .addField('User:', `${member}`)
       .addField('Reason:', 'This user is already permitted, and is on trial.')
       .addField('Moderator:', `${message.author}`)
