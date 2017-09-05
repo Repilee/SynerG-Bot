@@ -18,6 +18,7 @@ module.exports = (message) => {
 				if (perms >= cmd.conf.permLevel) {
         cmd.run(client, message, params, perms);
        } else {
+         console.log(`${message.author.username} doesn't have the permission to run a command.`)
          const embed = new Discord.RichEmbed()
        		.setColor(0xDF3046)
        		.setTimestamp()
