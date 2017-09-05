@@ -15,34 +15,34 @@ exports.run = (client, message, args) => {
   user.addRole(giveRole)
   if (message.guild.member(user).roles.has(giveRole.id)) {
     const embed = new Discord.RichEmbed()
-      .setColor(0xf44542)
+      .setColor(0xDF3046)
       .setTimestamp()
-      .setAuthor('Violate Error!', `http://i.imgur.com/tSlupol.png`)
+      .setAuthor('Violate Error!', `$(settings.image_link_negative).png`)
       .addField('User:', `${user}`)
       .addField('Reason:', 'The role you requested to violate is already assigned!')
       .addField('Moderator:', `${message.author}`)
-       .setFooter('SynerG moderation bot');
+       .setFooter('SynerG Moderation Bot');
     message.channel.send({embed}).catch(console.error);
     } else {
       const embed = new Discord.RichEmbed()
-      .setColor(0xf4ce42)
+      .setColor(0xffcd32)
       .setTimestamp()
-      .setAuthor('You have violated a rule from the server!', 'http://i.imgur.com/VsU2c64.png')
+      .setAuthor('You have violated a rule from the server!', `${settings.image_link_warning}`)
       .addField('Reason:', reason)
       .addField('Moderator:', `${message.author}`)
-      .setFooter('SynerG moderation bot | Please follow the rules! If you do not abide the rules, your account can be banned from SynerG server. Have a nice day!');
+      .setFooter('SynerG Moderation Bot | Please follow the rules! If you do not abide the rules, your account can be banned from SynerG server. Have a nice day!');
       user.send({embed}).catch(console.error).then (member => {
           const embed = new Discord.RichEmbed()
-            .setColor(0x00AE86)
+            .setColor(0x76b352)
             .setTimestamp()
-            .setAuthor('Violator System' ,'http://i.imgur.com/mlUqB6f.png')
-            .setFooter('SynerG moderation bot')
+            .setAuthor('Violator System' ,`${settings.image_link_affirmative}`)
+            .setFooter('SynerG Moderation Bot')
             .addField('User:', `${user}`)
             .addField('Reason:', reason)
             .addField('Moderator:', `${message.author}`);
           client.channels.get(modlog.id).send({embed}).catch(console.error)
             client.channels.get(modlog2.id).send({embed}).catch(console.error)
-          message.channel.sendMessage(`:ok_hand: Successfully violated ${name.username}#${name.discriminator}!`).then(
+          message.channel.send(`:white_check_mark:  Successfully violated ${name.username}#${name.discriminator}!`).then(
           response => response.delete(2500).catch(error => console.log(error.stack)))
         }).catch(e => {
           console.error(e);

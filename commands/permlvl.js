@@ -10,7 +10,7 @@ exports.run = function(client, message, args) {
   let owner_role = message.guild.roles.find('name', settings.ownerrolename);
   if (owner_role && message.member.roles.has(owner_role.id)) permlvl = 4;
   if (message.author.id === settings.botdeveloperid) permlvl = 5;
-  return message.reply("Your command level is **" + permlvl + "**")
+  return message.reply("Your permission level is level **" + permlvl + "**")
 }
 exports.conf = {
   enabled: true,
@@ -21,6 +21,6 @@ exports.conf = {
 
 exports.help = {
   name: 'permlvl',
-  description: 'Checks your permission level.',
+  description: 'Checks your permission level.', /*Check your permission, said nobody ever*/
   usage: 'permlvl'
 };

@@ -4,16 +4,16 @@ exports.run = function(client, message, args) {
 let nicknameinput = args.slice(1).join(' ');
 let member = message.guild.member(message.mentions.users.first())
 if (message.mentions.users.size < 1) return message.reply(':x: You must mention someone in order to give a nickname to a user.').catch(console.error);
-if (!message.guild.member(client.user).hasPermission('MANAGE_NICKNAMES')) return message.reply(':x: I do not have the correct permissions. Make sure it is (MANAGE_NICKNAMES) checked.').catch(console.error);
+if (!message.guild.member(client.user).hasPermission('MANAGE_NICKNAMES')) return message.reply(':x: Incorrect permissions. Make sure it is (MANAGE_NICKNAMES) checked.').catch(console.error);
   let modlog = client.channels.find('name', settings.logchannel);
-if (!modlog) return message.reply(':x: I cannot find a log channel.').catch(console.error);
+if (!modlog) return message.reply(':x: Log channel not found - make sure it is defined..').catch(console.error);
    if (!message.guild.member(member).kickable) {
      const embed = new Discord.RichEmbed()
-     .setColor(0xf44542)
+     .setColor(0xDF3046)
      .setTimestamp()
-     .setAuthor('Nickname System Error!','http://i.imgur.com/tSlupol.png')
+     .setAuthor('Nickname System Error!','$(settings.image_link_negative).png')
      .setDescription('The user\'s role is higher than the bot\'s role.')
-       .setFooter('SynerG moderation bot');
+       .setFooter('SynerG Moderation Bot');
    message.channel.send({embed}).catch(console.error); return
  }
 member.setNickname(nicknameinput);
@@ -24,25 +24,25 @@ console.log("Set " + member.user.username + " nickname named " + nicknameinput +
 }
 if (nicknameinput.length < 1) {
   const embed = new Discord.RichEmbed()
-    .setColor(0x00AE86)
+    .setColor(0x76b352)
     .setTimestamp()
-    .setAuthor('Successfully reset user\'s nickname!', `http://i.imgur.com/mlUqB6f.png`)
+    .setAuthor('Successfully reset user\'s nickname!', ``${settings.image_link_affirmative}``)
     .addField('User:', `${member.user.username}#${member.user.discriminator}`)
     .addField('Moderator:', `${message.author.username}#${message.author.discriminator}`)
-     .setFooter('SynerG moderation bot');
+     .setFooter('SynerG Moderation Bot');
   client.channels.get(modlog.id).send({embed}).catch(console.error);
-message.channel.sendMessage(`:ok_hand: Successfully reset ${member.user.username}\'s nickname!`)
+message.channel.send(`:white_check_mark:  Successfully reset ${member.user.username}\'s nickname!`)
 } else {
   const embed = new Discord.RichEmbed()
-    .setColor(0x00AE86)
+    .setColor(0x76b352)
     .setTimestamp()
-    .setAuthor('Successfully nicknamed a user!', `http://i.imgur.com/mlUqB6f.png`)
+    .setAuthor('Successfully nicknamed a user!', ``${settings.image_link_affirmative}``)
     .addField('User:', `${member}`)
     .addField('Nickname:', nicknameinput)
     .addField('Moderator:', `${message.author}`)
-     .setFooter('SynerG moderation bot');
+     .setFooter('SynerG Moderation Bot');
   client.channels.get(modlog.id).send({embed}).catch(console.error);
-message.channel.sendMessage(`:ok_hand: Successfully changed ${member.user.username}\'s nickname to **` + nicknameinput + "**")
+message.channel.send(`:white_check_mark:  Successfully changed ${member.user.username}\'s nickname to **` + nicknameinput + "**")
 }
 }
 

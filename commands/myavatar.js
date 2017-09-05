@@ -1,5 +1,5 @@
 exports.run = function(client, message, args) {
-  message.reply("here's your Discord avatar! " + message.author.avatarURL);
+  message.reply("Your Discord avatar has been retrieved: " + message.author.avatarURL);
   }
   exports.conf = {
     enabled: true,

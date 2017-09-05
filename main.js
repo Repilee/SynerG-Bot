@@ -82,11 +82,11 @@ client.elevation = message => {
      is then sent to the command handler for verification*/
       if (message.channel.type === 'dm') {
         const embed = new Discord.RichEmbed()
-        .setColor(0xf44542)
+        .setColor(0xDF3046)
         .setTimestamp()
-        .setAuthor('Command Error!', 'http://i.imgur.com/tSlupol.png')
+        .setAuthor('Command Error!', '$(settings.image_link_negative).png')
        .setDescription('In DMs (Direct Messages), all the commands for this bot has disabled.')
-        .setFooter('SynerG moderation bot');
+        .setFooter('SynerG Moderation Bot');
         message.channel.send({embed}).catch(console.error)
 } else {
   let permlvl = 0;
@@ -120,5 +120,5 @@ client.on('debug', e => {
 
 //-CLIENT EVENTS-\\
 //bot.on('guildCreate'), guild => {
-//guild.defaultChannel.sendMessage('**Hello everyone in this server, thank you for inviting me!**')
+//guild.defaultChannel.send('**Hello everyone in this server, thank you for inviting me!**')
 //});

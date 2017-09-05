@@ -5,9 +5,9 @@ exports.run = function(client, message, args) {
   	var yt = require("./youtube_plugin");
   	var youtube_plugin = new yt();
   } catch(e){
-  	console.log("Couldn't load youtube plugin!\n"+e.stack);
+  	console.log("ERROR: Couldn't load Youtube plugin!\n"+e.stack);
   }
-  youtube_plugin.sendMessage(args.join(" "), message.channel, client);
+  youtube_plugin.send(args.join(" "), message.channel, client);
 }
 exports.conf = {
   enabled: true,
@@ -18,6 +18,6 @@ exports.conf = {
 
 exports.help = {
   name: 'youtube',
-  description: 'Gets video link and shows it here.',
+  description: 'Gets a Youtube video link and shows it here.',
   usage: 'youtube <string>'
 };

@@ -2,13 +2,13 @@ const Discord = require('discord.js');
 const settings = require('../settings.json');
 exports.run = function(client, message, args) {
   const embed = new Discord.RichEmbed()
-  .setColor(0x00AE86)
+  .setColor(0x76b352)
   .setTimestamp()
-  .setThumbnail('https://i.imgur.com/pKmMWVj.png')
+  .setThumbnail('`${settings.image_link_sG}`')
   .setAuthor('About SynerG Bot')
   .addField('I am a moderation bot and I am here to keep everyone safe.', 'It is my job to protect everyone. Owned by Collect1ve and the game, phily241.')
   .setDescription('Bot version: ' + settings.version)
-  .setFooter('SynerG moderation bot');
+  .setFooter('SynerG Moderation Bot');
      message.channel.send({embed})
 };
 exports.conf = {

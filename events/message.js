@@ -21,11 +21,11 @@ module.exports = (message) => {
 }
 if (!cmd) {
 	const embed = new Discord.RichEmbed()
-		.setColor(0xf44542)
+		.setColor(0xDF3046)
 		.setTimestamp()
-		.setAuthor('Command Error!', 'http://i.imgur.com/tSlupol.png')
+		.setAuthor('Command Error!', '$(settings.image_link_negative).png')
 		.setDescription('The command you typed is not vaild. For a list of commands, run $help.')
-		 .setFooter('SynerG moderation bot');
+		 .setFooter('SynerG Moderation Bot');
 		 message.channel.send({embed}).then(
 	 response => response.delete(3500).catch(error => console.log(error.stack)))
 }

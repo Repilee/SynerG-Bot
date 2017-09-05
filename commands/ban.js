@@ -5,51 +5,51 @@ exports.run = (client, message, args) => {
     let reason = args.slice(2).join(' ')
   let user = message.mentions.users.first();
   let modlog = client.channels.find('name', settings.logchannel);
-  if (!modlog) return message.reply('I cannot find a log channel').catch(console.error);
-  if (message.mentions.users.size < 1) return message.reply(':x: You must mention someone to ban them. Correct command: $ban <mention> <days> <reason>').catch(console.error);
-  if (!number) return message.reply(':x: You must tell how many days for the user to unban. Correct command: $ban <mention> <days> <reason>').catch(console.error);
-  if (reason.length < 1) return message.reply(':x: You must tell a reason for the ban. Correct command: $ban <mention> <days> <reason>').catch(console.error);
+  if (!modlog) return message.reply('Log channel not found - make sure it is defined.').catch(console.error);
+  if (message.mentions.users.size < 1) return message.reply(':x: You must mention someone to ban them. Usage: $ban <mention> <days> <reason>').catch(console.error);
+  if (!number) return message.reply(':x: You must specify a ban length, up to 7 days. Usage: $ban <mention> <days> <reason>').catch(console.error);
+  if (reason.length < 1) return message.reply(':x: You must provide a reason. Usage: $ban <mention> <days> <reason>').catch(console.error);
   if (number > 7) {
     const embed = new Discord.RichEmbed()
-    .setColor(0xf44542)
+    .setColor(0xDF3046)
     .setTimestamp()
-    .setAuthor('Ban System Error!', 'http://i.imgur.com/tSlupol.png')
+    .setAuthor('Ban System Error!', `${settings.image_link_negative}`)
     .setDescription('Please select something that is LESS THAN OR EQUAL TO 7 days.')
-    .setFooter('SynerG moderation bot');
+    .setFooter('SynerG Moderation Bot');
   message.channel.send({embed}).catch(console.error);
 } else {
-  if (!message.guild.member(client.user).hasPermission('BAN_MEMBERS')) return message.reply(':x: I do not have the banning permissions.').catch(console.error);
+  if (!message.guild.member(client.user).hasPermission('BAN_MEMBERS')) return message.reply(':x: **Error!** The bot does not have the Ban Members permission.').catch(console.error);
   let banMember = message.guild.member(user);
   if (!message.guild.member(user).bannable) {
       const embed = new Discord.RichEmbed()
-      .setColor(0xf44542)
+      .setColor(0xDF3046)
       .setTimestamp()
-      .setAuthor('Ban System Error!', 'http://i.imgur.com/tSlupol.png')
-      .setDescription('The user your trying to ban doesn\'t exist, or the user\'s role is higher.')
-      .setFooter('SynerG moderation bot');
+      .setAuthor('Ban System Error!', '$(settings.image_link_negative).png')
+      .setDescription('The user you\'re trying to ban doesn\'t exist, or the user\'s role is higher.')
+      .setFooter('SynerG Moderation Bot');
     message.channel.send({embed}).catch(console.error);
   } else {
   const embed = new Discord.RichEmbed()
-  .setColor(0xf44542)
+  .setColor(0xDF3046)
   .setTimestamp()
-  .setAuthor('You have been banned from the server!' ,'http://i.imgur.com/tSlupol.png')
+  .setAuthor('You have been banned from the server!' ,`${settings.image_link_ban}`)
   .addField('Reason:', reason)
   .addField('Days:', number)
   .addField('Moderator:', `${message.author}`)
-  .setFooter('SynerG moderation bot | You have violated rules, therefore the server has banned you.');
+  .setFooter('SynerG Moderation Bot | You have been banned from the server.');
   user.send({embed}).catch(console.error).then
   banMember.ban(number).then(member => {
     const embed = new Discord.RichEmbed()
-      .setColor(0x00AE86)
+      .setColor(0xDF3046)
       .setTimestamp()
-      .setFooter('SynerG moderation bot')
-      .setAuthor('Ban System', 'http://i.imgur.com/mlUqB6f.png')
+      .setFooter('SynerG Moderation Bot')
+      .setAuthor('Ban System', `${settings.image_link_ban}`)
       .addField('User:', `${user}`)
       .addField('Reason:', reason)
       .addField('Days:', number)
       .addField('Moderator:', `${message.author}`);
     client.channels.get(modlog.id).send({embed}).catch(console.error);
-    message.channel.sendMessage(`:ok_hand: Successfully banned ${user.username}#${user.discriminator}!`).then(
+    message.channel.send(`:white_check_mark:  Successfully banned ${user.username}#${user.discriminator}!`).then(
       response => response.delete(2500).catch(error => console.log(error.stack)))
   }).catch(e => {
     console.error(e);
@@ -67,6 +67,6 @@ exports.conf = {
 
 exports.help = {
   name: 'ban',
-  description: 'The bot will ban the mention user. (Moderator+ only)',
-  usage: 'ban <mention> <reason>'
+  description: 'The bot will ban the mentioned user. (Moderator+ only)',
+  usage: 'ban <mention> <days> <reason>'
 };

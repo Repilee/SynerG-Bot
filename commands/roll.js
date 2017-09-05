@@ -1,7 +1,7 @@
 const Discord = require('discord.js');
 exports.run = (client, message, args) => {
   var roll = Math.floor(Math.random() * 6) + 1;
-  message.reply(":ok_hand: you got " + roll + "!")
+  message.reply(":white_check_mark:  you got " + roll + "!")
 };
 
 

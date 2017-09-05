@@ -1,13 +1,13 @@
 const Discord = require('discord.js');
 exports.run = function(client, message, args) {
   const embed = new Discord.RichEmbed()
-  .setColor(0x00AE86)
+  .setColor(0x76b352)
   .setTimestamp()
-  .setThumbnail('http://i.imgur.com/mlUqB6f.png')
+  .setThumbnail(`${settings.image_link_affirmative}`)
   .setAuthor('SERVER STATS')
   .addField('***Total users in this server:*** ', client.users.size )
   .addField('***Total channels in this server:***', client.channels.size)
-  .setFooter('SynerG moderation bot');
+  .setFooter('SynerG Moderation Bot');
      message.channel.send({embed})
 };
 exports.conf = {
@@ -19,6 +19,6 @@ exports.conf = {
 
 exports.help = {
   name: 'serverstats',
-  description: 'Shows a stats about this server.',
+  description: 'Shows statistics about this server.',
   usage: 'serverstats'
 };
